@@ -1,0 +1,21 @@
+body, html {
+    font-family: "Arial";
+    position: relative;
+}
+
+.center {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    width: 600px;
+
+    max-height: 120px;
+    font-size: 120px;
+
+    text-align: center;
+
+    margin: auto;
+}
