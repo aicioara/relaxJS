@@ -26,32 +26,64 @@ body, html {
 .instructions {
     position: absolute;
 
+    text-align: center;
+
     cursor: pointer;
 
     background-color: white;
     padding: 10px;
 
+    max-width: 320px;
+
     font-size: 20px;
 
     bottom: 0;
     left: 0;
+    right: 0;
+    margin: auto;
 }
 
-.instructions a {
+.credits {
+    position: absolute;
+    cursor: pointer;
+
+    background-color: white;
+    padding: 10px;
+    font-size: 20px;
+
+    bottom: 0;
+    right: 0;
+
+    font-weight: bold;
+}
+
+a {
     color: inherit;
     text-decoration: none;
 }
 
 .breath-in {
-    color: #049246;
+    color: #24AE60;
+}
+
+.breath-in-bg {
+    background-color: #24AE60;
 }
 
 .hold {
-    color: #1B76BC;
+    color: #12A185;
+}
+
+.hold-bg {
+    background-color: #12A185;
 }
 
 .breath-out {
-    color: #035096;
+    color: #5498C7;
+}
+
+.breath-out-bg {
+    background-color: #5498C7;
 }
 
 .active {

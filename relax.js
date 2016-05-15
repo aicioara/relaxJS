@@ -18,6 +18,10 @@
     var intervalHandler;
     var state = State.EXHALE;
 
+    breathInColor = "#24AE60";
+    holdColor = "#12A185";
+    breathOutColor = "#5498C7";
+
     Number.prototype.pad = function(size) {
         var s = String(this);
         while (s.length < (size)) {s = "0" + s;}
@@ -28,6 +32,7 @@
         $(".breath-in").removeClass("active");
         $(".hold").removeClass("active");
         $(".breath-out").removeClass("active");
+        $(".credits").removeClass("breath-in hold breath-out");
     }
 
     function changeBackground(color) {
@@ -37,7 +42,8 @@
     function inhalePeriod() {
         clearActive();
         $(".breath-in").addClass("active");
-        changeBackground("#049246");
+        $(".credits").addClass("breath-in");
+        changeBackground(breathInColor);
         alarmTime.setSeconds((new Date()).getSeconds() + 4);
         state = State.INHALE;
     }
@@ -45,7 +51,8 @@
     function holdPeriod() {
         clearActive();
         $(".hold").addClass("active");
-        changeBackground("#1B76BC");
+        $(".credits").addClass("hold");
+        changeBackground(holdColor);
         alarmTime.setSeconds((new Date()).getSeconds() + 7);
         state = State.HOLD;
     }
@@ -53,7 +60,8 @@
     function exhalePeriod() {
         clearActive();
         $(".breath-out").addClass("active");
-        changeBackground("#035096");
+        $(".credits").addClass("breath-out");
+        changeBackground(breathOutColor);
         alarmTime.setSeconds((new Date()).getSeconds() + 8);
         state = State.EXHALE;
     }
@@ -86,6 +94,8 @@
 
         window.requestAnimationFrame(timerInterrupt);
     }
+
+    // setInterval(timerInterrupt, 15)
 
     window.requestAnimationFrame(timerInterrupt);
 
