@@ -1,6 +1,9 @@
 body, html {
     font-family: "Arial";
     position: relative;
+
+    margin: 0;
+    padding: 0;
 }
 
 .center {
@@ -18,4 +21,39 @@ body, html {
     text-align: center;
 
     margin: auto;
+}
+
+.instructions {
+    position: absolute;
+
+    cursor: pointer;
+
+    background-color: white;
+    padding: 10px;
+
+    font-size: 20px;
+
+    bottom: 0;
+    left: 0;
+}
+
+.instructions a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.breath-in {
+    color: #049246;
+}
+
+.hold {
+    color: #1B76BC;
+}
+
+.breath-out {
+    color: #035096;
+}
+
+.active {
+    font-weight: bold;
 }

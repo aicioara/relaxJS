@@ -24,23 +24,35 @@
         return s;
     }
 
+    function clearActive() {
+        $(".breath-in").removeClass("active");
+        $(".hold").removeClass("active");
+        $(".breath-out").removeClass("active");
+    }
+
     function changeBackground(color) {
         document.body.bgColor = color
     }
 
     function inhalePeriod() {
+        clearActive();
+        $(".breath-in").addClass("active");
         changeBackground("#049246");
         alarmTime.setSeconds((new Date()).getSeconds() + 4);
         state = State.INHALE;
     }
 
     function holdPeriod() {
+        clearActive();
+        $(".hold").addClass("active");
         changeBackground("#1B76BC");
         alarmTime.setSeconds((new Date()).getSeconds() + 7);
         state = State.HOLD;
     }
 
     function exhalePeriod() {
+        clearActive();
+        $(".breath-out").addClass("active");
         changeBackground("#035096");
         alarmTime.setSeconds((new Date()).getSeconds() + 8);
         state = State.EXHALE;
