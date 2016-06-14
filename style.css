@@ -86,6 +86,11 @@ a {
     background-color: #5498C7;
 }
 
+.faded {
+    opacity: 0.2;
+}
+
 .active {
     font-weight: bold;
+    opacity: 1.0 !important;
 }
