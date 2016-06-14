@@ -6,8 +6,7 @@
  * http://www.medicaldaily.com/life-hack-sleep-4-7-8-breathing-exercise-will-supposedly-put-you-sleep-just-60-332122
  */
 
-// (function() {
-
+(function() {
     var State = {
         INHALE: 0,
         HOLD: 1,
@@ -28,10 +27,32 @@
         return s;
     }
 
+    function checkVibrationEnabled() {
+        var notWorking = function(issue) {
+            console.log(issue + " not Working");
+        }
+
+        if (!"vibrate" in navigator) {
+            notWorking("navigator");
+            return false;
+        }
+
+        // enable vibration support
+        navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate;
+
+        if (!navigator.vibrate) {
+            notWorking("API");
+            return false;
+        }
+
+        return true;
+    }
+    if (! checkVibrationEnabled) {
+        console.log("Vibration not enabled");
+    }
+
     function clearActive() {
-        $(".breath-in").removeClass("active");
-        $(".hold").removeClass("active");
-        $(".breath-out").removeClass("active");
+        $(".clearable").removeClass("active");
         $(".credits").removeClass("breath-in hold breath-out");
     }
 
@@ -39,10 +60,14 @@
         document.body.bgColor = color
     }
 
+    //TODO maybe dim the non active breath / etc
+
     function inhalePeriod() {
         clearActive();
         $(".breath-in").addClass("active");
         $(".credits").addClass("breath-in");
+        navigator.vibrate([100]);
+
         changeBackground(breathInColor);
         alarmTime.setSeconds((new Date()).getSeconds() + 4);
         state = State.INHALE;
@@ -52,6 +77,7 @@
         clearActive();
         $(".hold").addClass("active");
         $(".credits").addClass("hold");
+        navigator.vibrate([100, 100, 100]);
         changeBackground(holdColor);
         alarmTime.setSeconds((new Date()).getSeconds() + 7);
         state = State.HOLD;
@@ -61,6 +87,7 @@
         clearActive();
         $(".breath-out").addClass("active");
         $(".credits").addClass("breath-out");
+        navigator.vibrate([1000]);
         changeBackground(breathOutColor);
         alarmTime.setSeconds((new Date()).getSeconds() + 8);
         state = State.EXHALE;
@@ -73,7 +100,6 @@
             case State.EXHALE: inhalePeriod(); break;
         }
     }
-
 
     function timerInterrupt() {
         var currTime = new Date();
@@ -96,8 +122,6 @@
     }
 
     // setInterval(timerInterrupt, 15)
-
     window.requestAnimationFrame(timerInterrupt);
 
-
-// })();
+})();
